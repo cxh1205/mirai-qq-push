@@ -1,5 +1,6 @@
 <?php
     $key = $_GET['key'];
+    $my_url = file_get_contents('myurl.txt');
     $data_json = file_get_contents('data.json');
     $json = json_decode($data_json, true);
     for($i=0; $i<sizeof($json); $i++){
@@ -9,7 +10,7 @@
         }
     }
     if($i==sizeof($json)){
-        header("Location: https://tool.tuotuo.space/push/");
+        header("Location: $my_url");
     }
     if($_GET['msg']){
         $msg = $_GET['msg'];
@@ -148,6 +149,6 @@
         ?></div><?php
     }
     else{
-        echo file_get_contents('https://tool.tuotuo.space/push/index.php?key='.$my_key.'&code='.$my_code);
+        echo file_get_contents($my_url.'index.php?key='.$my_key.'&code='.$my_code);
     }
 ?>
