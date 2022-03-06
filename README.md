@@ -6,10 +6,15 @@
 项目地址[mirai](https://github.com/mamoe/mirai)
 
 ## mirai-qq-push
-一款基于`mirai`和`mirai-http-api`的消息推送服务，用php来推送消息到QQ号或者QQ群  
+一款基于`mirai`和`mirai-http-api`的消息推送服务，帮助你搭建自己的消息推送系统。
 
-### 使用接口
-接口简单，仅有3个参数
+本项目使用php来推送消息到QQ号或者QQ群，接口类似于Qmsg。
+
+<br>
+
+
+### 使用帮助
+#### http接口
 - msg：纯文本信息 不可省略
 - type：group或friend 可与code一起省略
 - code：群号或QQ号 可与type一起省略
@@ -17,9 +22,7 @@
 
 更详细的内容可以参考[index.php](index.php)
 
-<br>
-
-### 关于文件的解释
+#### 关于文件的解释
 - log——消息推送的日志
 - key.txt——`mirai`的`SessionKey`
 - myurl.txt——网址
@@ -38,10 +41,25 @@
 }
 ```
 
-### 兼容性说明
-在[推送帮助文档](index.php)中采用了``http://www.example.com/你的key/``的形式，但实际上的推送链接应该是``http://www.example.com/push.php?key=你的key``，然后再到链接后增加参数，如``http://www.example.com/push.php?key=你的key&msg=你好``。
+<br>
 
-因为我将这个项目部署在服务器上时应用了如下`nginx`规则：
+### 搭建过程
+#### 准备工作
+1. 配置好[mirai](https://github.com/mamoe/mirai)机器人，并登录`QQbot`
+2. 安装`v2.X`版本的[mirai-api-http](https://github.com/project-mirai/mirai-api-http/blob/master/docs/api/API.md)插件
+
+#### 使用方法
+1. 运行bot机器人
+2. 根据api获取SessionKey写入[key.txt](key.txt)中
+3. 浏览器输入`你的网址`进行测试
+
+<br>
+
+### 改进说明
+想要采用Qmsg一样链接形式如：``http://www.example.com/你的key/``，增加参数后为``http://www.example.com/你的key/?msg=你好``。
+
+使用nginx服务器，在server中加入如下规则：
+
 ```nginx
 location  / {
     if ($request_filename ~ /[a-zA-Z0-9]+/?) {
@@ -49,15 +67,12 @@ location  / {
     }
 }
 ```
-将`你的key`转化为php参数，所以达成现在的效果。
 
-如果不配置这个规则，那么访问推送链接应使用``http://www.example.com/push.php?key=你的key``这个形式。因此在采用get和post方法时直接将目的链接改为``http://www.example.com/push.php?key=你的key``即可。
+即将路径转化为push.php的key参数
 
-如python中：
-```python
-import requests
-url="http://www.example.com/push.php?key=你的key"
-data={'msg':'你好'}
-requests.post(url, data=data)
-requests.get(url, data=data)
-```
+<br>
+
+### 展望
+- [x] 寻找改进方法，使链接类似于Qmsg
+- [ ] 增加调用后返回的数据格式，如json等
+- [ ] 增加消息增强，如发送图片和艾特

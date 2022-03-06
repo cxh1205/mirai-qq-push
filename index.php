@@ -73,7 +73,7 @@
             <div class="title">怎么用</div>
             <div class='sub-block'>
                 <p class="text">专属的key链接：</p>
-                <p class="text"><?php echo $my_url.$key; ?>/?msg=<span class='blue'>消息</span>&type=<span class='blue'>group或者friend</span>&code=<span class='blue'>群号或者QQ号</span></p>
+                <p class="text"><?php echo "$my_url?key=$key&"; ?>msg=<span class='blue'>消息</span>&type=<span class='blue'>group或者friend</span>&code=<span class='blue'>群号或者QQ号</span></p>
                 <p class="tip">目前已支持GET和POST方式</p>
             </div>
         </div>
@@ -91,18 +91,18 @@
                 <p class='sub-title'>仅输入msg</p>
                 <?php
                     if($k && $c)
-                        echo "<p class='text'><a href='$my_url".$key."/?msg=你好'>$my_url".$key."/?msg=你好</a>（可以点一下查看效果）</p>";
+                        echo "<p class='text'><a href='$my_url?key=$key&msg=你好'>$my_url?key=$key&msg=你好</a>（可以点一下查看效果）</p>";
                     else
-                        echo "<p class='text'>$my_url".$key."/?msg=你好</p>"
+                        echo "<p class='text'>$my_url?key=$key&msg=你好</p>"
                 ?>
                 <p class='tip'>默认发送给自己的QQ号</p>
                 <p class='text'><hr></p>
                 <p class='sub-title'>输入完整参数</p>
                 <?php
                     if($k && $c)
-                        echo "<p class='text'><a href='$my_url".$key."/?type=friend&code=".$code."&msg=你好'>$my_url".$key."/?type=friend&code=".$code."&msg=你好</a>（可以点一下查看效果）</p>";
+                        echo "<p class='text'><a href='$my_url?key=$key&type=friend&code=".$code."&msg=你好'>$my_url?key=$key&type=friend&code=".$code."&msg=你好</a>（可以点一下查看效果）</p>";
                     else
-                        echo "<p class='text'>$my_url".$key."/?type=friend&code=".$code."&msg=你好</p>"
+                        echo "<p class='text'>$my_url?key=$key&type=friend&code=".$code."&msg=你好</p>"
                 ?>
                 <p class='tip'>此链接与上面的链接等价</p>
             </div>
@@ -113,7 +113,7 @@
                 <p class='sub-title'>以python为例</p>
                 <p class='text'>import requests</p>
                 <?php
-                    echo "<p class='text'>url=\"$my_url".$key."/\"</p>";
+                    echo "<p class='text'>url=\"$my_url?key=$key\"</p>";
                 ?>
                 <p class='text'>data={'msg':'你好'}</p>
                 <p class='text'>requests.post(url, data=data)</p>
@@ -121,7 +121,7 @@
                 <p class='text'><hr></p>
                 <p class='text'>import requests</p>
                 <?php
-                    echo "<p class='text'>url=\"$my_url".$key."/\"</p>";
+                    echo "<p class='text'>url=\"$my_url?key=$key\"</p>";
                 ?>
                 <p class='text'>data={'msg':'你好', 'type':'friend', 'code', <?php echo $code ?>}</p>
                 <p class='text'>requests.post(url, data=data)</p>

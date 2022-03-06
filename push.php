@@ -1,5 +1,11 @@
 <?php
     $key = $_GET['key'];
+    if($_GET['key']){
+        $key = $_GET['key'];
+    }
+    else{
+        $key = $_POST['key'];
+    }
     $my_url = file_get_contents('myurl.txt');
     $data_json = file_get_contents('data.json');
     $json = json_decode($data_json, true);
