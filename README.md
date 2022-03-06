@@ -34,7 +34,7 @@
 
 ```json
 {
-  "key": "temp",# string，推送网页登录的key
+  "key": "example",# string，推送网页登录的key
   "code": 12345,# int，key所有者的QQ号
   "friends": [],# int，这个key可推送的QQ号
   "group": [123456]# int，这个key可推送的QQ群号
@@ -46,7 +46,7 @@
 ### 搭建过程
 #### 准备工作
 1. 配置好[mirai](https://github.com/mamoe/mirai)机器人，并登录`QQbot`
-2. 安装`v2.X`版本的[mirai-api-http](https://github.com/project-mirai/mirai-api-http/blob/master/docs/api/API.md)插件
+2. 安装`v2.X`版本的[mirai-api-http](https://github.com/project-mirai/mirai-api-http)插件
 
 #### 使用方法
 1. 运行bot机器人
